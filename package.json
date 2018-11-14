@@ -2,7 +2,7 @@
     "name": "codypaste",
     "displayName": "codypaste",
     "description": "Just code, copy and paste with https://codypaste.io",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "publisher": "codypaste",
     "engines": {
         "vscode": "^1.25.0"
@@ -11,19 +11,28 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.codypasteSelected"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.codypasteSelected",
+                "title": "codypaste selected",
+                "category": "codypaste"
             }
-        ]
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.codypasteSelected",
+                    "group": "YourGroup@1"
+                }
+            ]
+        }
     },
     "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
+        "postinstall": "npm install && node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
@@ -32,5 +41,9 @@
         "eslint": "^4.11.0",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "node-fetch": "^2.2.0",
+        "request-promise": "^4.2.2"
     }
 }
